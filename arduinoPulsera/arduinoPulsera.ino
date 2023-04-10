@@ -22,7 +22,6 @@ void setup() {
   pinMode(botonMedicacion, INPUT);
   pinMode(botonSOS, INPUT);
   pinMode(botonCrisis, INPUT);
-  String Mensaje = "";
   mySerial.begin(9600);
   delay(1000);
 
@@ -34,14 +33,14 @@ void loop() {
   estaCrisis = digitalRead(botonCrisis);
 
   if (estaCrisis == LOW){
-    Mensaje = "PACIENTE ID: "+idPaciente+ " ESTADO: Crisis";
-    enviarMensaje(mensaje);
+    String Mensaje = "PACIENTE ID: "+String(idPaciente)+ " ESTADO: Crisis";
+    enviarMensaje(Mensaje);
   }
-  elseif(estaSOS == LOW){
-    Mensaje = "PACIENTE ID: "+idPaciente+ " ESTADO: PensamientosSuicidas";
+  else if(estaSOS == LOW){
+    String Mensaje = "PACIENTE ID: "+String(idPaciente)+ " ESTADO: PensamientosSuicidas";
   }
-  elseif(estaMedicacion == LOW){
-    Mensaje = "PACIENTE ID: "+idPaciente+ " ESTADO: FalloMedicación";
+  else if(estaMedicacion == LOW){
+    String Mensaje = "PACIENTE ID: "+String(idPaciente)+ " ESTADO: FalloMedicación";
   }
 
 }
@@ -64,6 +63,6 @@ void updateSerial(){
     mySerial.write(Serial.read());
   }
   while(mySerial.available()){
-    Serial.write(mySerial.read())
+    Serial.write(mySerial.read());
   }
 }
