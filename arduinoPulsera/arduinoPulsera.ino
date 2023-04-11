@@ -4,8 +4,6 @@ PROGRAMA PARA LA IMPLEMENTACIÓN DE UNA PULSERA INTELIGENTE QUE AYUDE A ENFERMOS
 @author Rafael Emilio Pérez López
 */
 
-#include "SoftwareSerial.h"
-
 const int idPaciente = 1001;
 
 const int botonMedicacion = 1;
@@ -16,14 +14,11 @@ int estaMedicacion = HIGH;
 int estaSOS = HIGH;
 int estaCrisis = HIGH;
 
-SoftwareSerial mySerial(3, 2); //SIM800L Tx & Rx is connected to Arduino #3 & #2
-
 void setup() {
+  
   pinMode(botonMedicacion, INPUT);
   pinMode(botonSOS, INPUT);
   pinMode(botonCrisis, INPUT);
-  mySerial.begin(9600);
-  delay(1000);
 
 }
 
@@ -43,26 +38,23 @@ void loop() {
     String Mensaje = "PACIENTE ID: "+String(idPaciente)+ " ESTADO: FalloMedicación";
   }
 
+
 }
 
 void enviarMensaje(String mensaje){
-  mySerial.print("AT");
+  Serial1.begin(9600);
+  delay(1000);
+  Serial1.print("AT");
   updateSerial();
-  mySerial.print("AT+CMGF=1");
+  Serial1.print("AT+CMGF=1");
   updateSerial();
-  mySerial.print("AT+CMGS=\"+34682479236\"");
+  Serial1.print("AT+CMGS=\"+15074485220\"");
   updateSerial();
-  mySerial.print(mensaje);
+  Serial1.print(mensaje);
   updateSerial();
-  mySerial.write(26);
+  Serial1.write(26);
 }
 
 void updateSerial(){
-  delay(500);
-  while (Serial.available()){
-    mySerial.write(Serial.read());
-  }
-  while(mySerial.available()){
-    Serial.write(mySerial.read());
-  }
+  //TODO
 }
