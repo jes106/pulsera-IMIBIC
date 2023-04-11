@@ -1,4 +1,4 @@
-# Pulsera control para la Salus Mental
+# Pulsera control para la Salud Mental
 
 ## Diseño de la pulsera
 
