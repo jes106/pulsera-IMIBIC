@@ -11,4 +11,4 @@ Vamos a necesitar 4 botones ya que se nos piden 4 estados (solo tenemos dos boto
 - Estoy teniendo una crisis
 - Siento que la medicación no me está yendo bien
 - Tengo pensamientos suicidas (SOS)
-- 
+- Fallo en la protección
